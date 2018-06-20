@@ -1,0 +1,13 @@
+<h1>Yahoo! Orders to Magento Converter</h1>
+<%= form_tag({controller: :home, action: :convert}, multipart: true) do %>
+    <%= label_tag 'orders' %>
+    <%= file_field_tag 'orders', required: true %>
+    <p></p>
+    <%= label_tag 'orders_products' %>
+    <%= file_field_tag 'orders_products', required: true %>
+    <p></p>
+    <%= label_tag 'orders_status' %>
+    <%= file_field_tag 'orders_status', required: true %>
+    <p></p>
+    <%= submit_tag 'Convert' %>
+<% end %>
