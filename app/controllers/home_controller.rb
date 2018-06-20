@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
 
    def download
-     File.open("#{Rails.root}/magento_orders_import.csv", 'r') do |f|
+     File.open(Rails.root.join('tmp', 'magento_orders_import.csv'), 'r') do |f|
        send_data f.read, :type => "text/csv", :filename => "magento_orders_import.csv"
      end
   end

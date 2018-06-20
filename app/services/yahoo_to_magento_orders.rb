@@ -677,9 +677,10 @@ class YahooToMagentoOrders
 #payment_method_additional_data
 #a:2:{s:16:"Credit Card Type";s:2:"VI";s:18:"Credit Card Number";s:4:"6133";}
     puts "now writing magento store file..."
-    final_magento_file = File.new("magento_orders_import.csv", "w")
-    final_magento_file << "^order_id^,^website^,^email^,^is_guest^,^payment_method^,^products_ordered^,^order_status^,^tracking_date^,^tracking_ship_method^,^tracking_codes^,^tax_percent^,^store_id^,^group_id^,^prefix^,^firstname^,^middlename^,^lastname^,^suffix^,^default_billing^,^default_shipping^,^created_at^,^billing_prefix^,^billing_firstname^,^billing_middlename^,^billing_lastname^,^billing_suffix^,^billing_company^,^billing_street_full^,^billing_city^,^billing_country^,^billing_region^,^billing_postcode^,^billing_telephone^,^billing_fax^,^shipping_prefix^,^shipping_firstname^,^shipping_middlename^,^shipping_lastname^,^shipping_suffix^,^shipping_company^,^shipping_street_full^,^shipping_city^,^shipping_country^,^shipping_region^,^shipping_postcode^,^shipping_telephone^,^shipping_fax^,^subtotal^,^grand_total^,^shipping_method^,^shipping_description^,^discount_amount^,^base_shipping_amount^,^shipping_amount^,^tax_amount^,^customer_is_guest^ \n"
-    final_magento_file << all_order_items
+    File.open(Rails.root.join('tmp', 'magento_orders_import.csv'), "w") do |final_magento_file|
+      final_magento_file.puts "^order_id^,^website^,^email^,^is_guest^,^payment_method^,^products_ordered^,^order_status^,^tracking_date^,^tracking_ship_method^,^tracking_codes^,^tax_percent^,^store_id^,^group_id^,^prefix^,^firstname^,^middlename^,^lastname^,^suffix^,^default_billing^,^default_shipping^,^created_at^,^billing_prefix^,^billing_firstname^,^billing_middlename^,^billing_lastname^,^billing_suffix^,^billing_company^,^billing_street_full^,^billing_city^,^billing_country^,^billing_region^,^billing_postcode^,^billing_telephone^,^billing_fax^,^shipping_prefix^,^shipping_firstname^,^shipping_middlename^,^shipping_lastname^,^shipping_suffix^,^shipping_company^,^shipping_street_full^,^shipping_city^,^shipping_country^,^shipping_region^,^shipping_postcode^,^shipping_telephone^,^shipping_fax^,^subtotal^,^grand_total^,^shipping_method^,^shipping_description^,^discount_amount^,^base_shipping_amount^,^shipping_amount^,^tax_amount^,^customer_is_guest^ \n"
+      final_magento_file.puts all_order_items
+    end
 
     puts "[DONE] \n"
     puts "process complete"
