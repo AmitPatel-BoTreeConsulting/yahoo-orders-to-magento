@@ -92,7 +92,7 @@ class YahooToMagentoOrders
             orders_status_final = "canceled"
           end
         else
-          #puts "NO MATCH"
+          puts "NO MATCH > #{row[:order_id]}"
           break if weMatchedStatus == true
         end
 
@@ -670,7 +670,7 @@ class YahooToMagentoOrders
       end
 
       #output one row per order
-      all_order_items << "^" + finalOrderId + "^,^base^,^" + finalCustomerEmailAddress + "^,^0^,^" + finalPaymetMethod + "^,^" + orderSkuData.chop + "^,^" + orders_status_final + "^,^" + ordertrackingdate + "^,^" + orderstrackingmethod + "^,^" + orders_trackingcode_final + "^,^0^,^1^,^General^,^^,^" + customerFirstName + "^,^^,^" + customerLastName + "^,^^,^0^,^0^,^" + finalDatePurchased + "^,^^,^" + finalBillingFirstName + "^,^^,^" + finalBillingLastName + "^,^^,^" + finalBillingCompany + "^,^" + finalBillingStreetAddress + "^,^" + finalBillingCity + "^,^" + finalCountryCode + "^,^" + finalBillingState + "^,^" + finalBillingPostcode + "^,^" + finalCustomerTelephone + "^,^^,^^,^" + finalShippingFirstName + "^,^^,^" + finalShippingLastName + "^,^^,^" + finalDeliveryCompany + "^,^" + finalDeliveryStreetAddress + "^,^" + finalDeliveryCity + "^,^" + finalCountryCodeShipping + "^,^" + finalDeliveryState + "^,^" + finalDeliveryPostcode + "^,^" + finalCustomerTelephone + "^,^^,^" + finalOrderSubTotal.to_s + "^,^" + finalOrderGrandTotal + "^,^flatrate_flatrate^,^" + shipping_description + "^,^" + finalOrderDiscount + "^,^" + finalOrderShippingTotal + "^,^" + finalOrderShippingTotal + "^,^" + finalOrderTaxTotal +"^,^0^, \n"
+      all_order_items << "\"" + finalOrderId + "\",\"base\",\"" + finalCustomerEmailAddress + "\",\"0\",\"" + finalPaymetMethod + "\",\"" + orderSkuData.chop + "\",\"" + orders_status_final + "\",\"" + ordertrackingdate + "\",\"" + orderstrackingmethod + "\",\"" + orders_trackingcode_final + "\",\"0\",\"1\",\"General\",\"\",\"" + customerFirstName + "\",\"\",\"" + customerLastName + "\",\"\",\"0\",\"0\",\"" + finalDatePurchased + "\",\"\",\"" + finalBillingFirstName + "\",\"\",\"" + finalBillingLastName + "\",\"\",\"" + finalBillingCompany + "\",\"" + finalBillingStreetAddress + "\",\"" + finalBillingCity + "\",\"" + finalCountryCode + "\",\"" + finalBillingState + "\",\"" + finalBillingPostcode + "\",\"" + finalCustomerTelephone + "\",\"\",\"\",\"" + finalShippingFirstName + "\",\"\",\"" + finalShippingLastName + "\",\"\",\"" + finalDeliveryCompany + "\",\"" + finalDeliveryStreetAddress + "\",\"" + finalDeliveryCity + "\",\"" + finalCountryCodeShipping + "\",\"" + finalDeliveryState + "\",\"" + finalDeliveryPostcode + "\",\"" + finalCustomerTelephone + "\",\"\",\"" + finalOrderSubTotal.to_s + "\",\"" + finalOrderGrandTotal + "\",\"flatrate_flatrate\",\"" + shipping_description + "\",\"" + finalOrderDiscount + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderTaxTotal +"\",\"0\", \n"
       rowCount +=1
     end
 
@@ -678,7 +678,7 @@ class YahooToMagentoOrders
 #a:2:{s:16:"Credit Card Type";s:2:"VI";s:18:"Credit Card Number";s:4:"6133";}
     puts "now writing magento store file..."
     File.open(Rails.root.join('tmp', 'magento_orders_import.csv'), "w") do |final_magento_file|
-      final_magento_file.puts "^order_id^,^website^,^email^,^is_guest^,^payment_method^,^products_ordered^,^order_status^,^tracking_date^,^tracking_ship_method^,^tracking_codes^,^tax_percent^,^store_id^,^group_id^,^prefix^,^firstname^,^middlename^,^lastname^,^suffix^,^default_billing^,^default_shipping^,^created_at^,^billing_prefix^,^billing_firstname^,^billing_middlename^,^billing_lastname^,^billing_suffix^,^billing_company^,^billing_street_full^,^billing_city^,^billing_country^,^billing_region^,^billing_postcode^,^billing_telephone^,^billing_fax^,^shipping_prefix^,^shipping_firstname^,^shipping_middlename^,^shipping_lastname^,^shipping_suffix^,^shipping_company^,^shipping_street_full^,^shipping_city^,^shipping_country^,^shipping_region^,^shipping_postcode^,^shipping_telephone^,^shipping_fax^,^subtotal^,^grand_total^,^shipping_method^,^shipping_description^,^discount_amount^,^base_shipping_amount^,^shipping_amount^,^tax_amount^,^customer_is_guest^ \n"
+      final_magento_file.puts "\"order_id\",\"website\",\"email\",\"is_guest\",\"payment_method\",\"products_ordered\",\"order_status\",\"tracking_date\",\"tracking_ship_method\",\"tracking_codes\",\"tax_percent\",\"store_id\",\"group_id\",\"prefix\",\"firstname\",\"middlename\",\"lastname\",\"suffix\",\"default_billing\",\"default_shipping\",\"created_at\",\"billing_prefix\",\"billing_firstname\",\"billing_middlename\",\"billing_lastname\",\"billing_suffix\",\"billing_company\",\"billing_street_full\",\"billing_city\",\"billing_country\",\"billing_region\",\"billing_postcode\",\"billing_telephone\",\"billing_fax\",\"shipping_prefix\",\"shipping_firstname\",\"shipping_middlename\",\"shipping_lastname\",\"shipping_suffix\",\"shipping_company\",\"shipping_street_full\",\"shipping_city\",\"shipping_country\",\"shipping_region\",\"shipping_postcode\",\"shipping_telephone\",\"shipping_fax\",\"subtotal\",\"grand_total\",\"shipping_method\",\"shipping_description\",\"discount_amount\",\"base_shipping_amount\",\"shipping_amount\",\"tax_amount\",\"customer_is_guest\" \n"
       final_magento_file.puts all_order_items
     end
 
