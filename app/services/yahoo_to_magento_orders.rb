@@ -556,10 +556,16 @@ class YahooToMagentoOrders
 
       finalCountryCode = finalCountryCodeShipping
 
-      if row[:customers_telephone].to_s != ""
-        finalCustomerTelephone = row[:customers_telephone].to_s
+     if row[:ship_phone].to_s != ""
+        finalBillingTelephone = row[:ship_phone].to_s
       else
-        finalCustomerTelephone = "000-000-0000"
+        finalBillingTelephone = "000-000-0000"
+      end
+
+     if row[:bill_phone].to_s != ""
+        finalDeliveryTelephone = row[:bill_phone].to_s
+      else
+        finalDeliveryTelephone = "000-000-0000"
       end
 
       if row[:ship_zip].to_s != ""
@@ -670,7 +676,7 @@ class YahooToMagentoOrders
       end
 
       #output one row per order
-      all_order_items << "\"" + finalOrderId + "\",\"base\",\"" + finalCustomerEmailAddress + "\",\"0\",\"" + finalPaymetMethod + "\",\"" + orderSkuData.chop + "\",\"" + orders_status_final + "\",\"" + ordertrackingdate + "\",\"" + orderstrackingmethod + "\",\"" + orders_trackingcode_final + "\",\"0\",\"1\",\"General\",\"\",\"" + customerFirstName + "\",\"\",\"" + customerLastName + "\",\"\",\"0\",\"0\",\"" + finalDatePurchased + "\",\"\",\"" + finalBillingFirstName + "\",\"\",\"" + finalBillingLastName + "\",\"\",\"" + finalBillingCompany + "\",\"" + finalBillingStreetAddress + "\",\"" + finalBillingCity + "\",\"" + finalCountryCode + "\",\"" + finalBillingState + "\",\"" + finalBillingPostcode + "\",\"" + finalCustomerTelephone + "\",\"\",\"\",\"" + finalShippingFirstName + "\",\"\",\"" + finalShippingLastName + "\",\"\",\"" + finalDeliveryCompany + "\",\"" + finalDeliveryStreetAddress + "\",\"" + finalDeliveryCity + "\",\"" + finalCountryCodeShipping + "\",\"" + finalDeliveryState + "\",\"" + finalDeliveryPostcode + "\",\"" + finalCustomerTelephone + "\",\"\",\"" + finalOrderSubTotal.to_s + "\",\"" + finalOrderGrandTotal + "\",\"flatrate_flatrate\",\"" + shipping_description + "\",\"" + finalOrderDiscount + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderTaxTotal +"\",\"0\", \n"
+      all_order_items << "\"" + finalOrderId + "\",\"base\",\"" + finalCustomerEmailAddress + "\",\"0\",\"" + finalPaymetMethod + "\",\"" + orderSkuData.chop + "\",\"" + orders_status_final + "\",\"" + ordertrackingdate + "\",\"" + orderstrackingmethod + "\",\"" + orders_trackingcode_final + "\",\"0\",\"1\",\"General\",\"\",\"" + customerFirstName + "\",\"\",\"" + customerLastName + "\",\"\",\"0\",\"0\",\"" + finalDatePurchased + "\",\"\",\"" + finalBillingFirstName + "\",\"\",\"" + finalBillingLastName + "\",\"\",\"" + finalBillingCompany + "\",\"" + finalBillingStreetAddress + "\",\"" + finalBillingCity + "\",\"" + finalCountryCode + "\",\"" + finalBillingState + "\",\"" + finalBillingPostcode + "\",\"" + finalBillingTelephone + "\",\"\",\"\",\"" + finalShippingFirstName + "\",\"\",\"" + finalShippingLastName + "\",\"\",\"" + finalDeliveryCompany + "\",\"" + finalDeliveryStreetAddress + "\",\"" + finalDeliveryCity + "\",\"" + finalCountryCodeShipping + "\",\"" + finalDeliveryState + "\",\"" + finalDeliveryPostcode + "\",\"" + finalDeliveryTelephone + "\",\"\",\"" + finalOrderSubTotal.to_s + "\",\"" + finalOrderGrandTotal + "\",\"flatrate_flatrate\",\"" + shipping_description + "\",\"" + finalOrderDiscount + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderShippingTotal + "\",\"" + finalOrderTaxTotal +"\",\"0\", \n"
       rowCount +=1
     end
 
