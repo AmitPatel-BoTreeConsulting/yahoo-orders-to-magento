@@ -75,7 +75,7 @@ class YahooToMagentoOrders
       weMatchedStatus = false
       ordersStatus.each do |rowStatus|
 
-        if row[:order_id].to_s == rowStatus[:order_id].to_s
+        if row[:order_id].to_s == rowStatus[:id].to_s
           puts "MATCH ROW FOR ORDER #" + row[:order_id].to_s + " STATUS: " + rowStatus[:statusmark].to_s
           #build the sku's per order here
           weMatchedStatus = true
