@@ -556,14 +556,14 @@ class YahooToMagentoOrders
 
       finalCountryCode = finalCountryCodeShipping
 
-     if row[:ship_phone].to_s != ""
-        finalBillingTelephone = row[:ship_phone].to_s
+     if row[:bill_phone].to_s != ""
+        finalBillingTelephone = row[:bill_phone].to_s
       else
         finalBillingTelephone = "000-000-0000"
       end
 
-     if row[:bill_phone].to_s != ""
-        finalDeliveryTelephone = row[:bill_phone].to_s
+     if row[:ship_phone].to_s != ""
+        finalDeliveryTelephone = row[:ship_phone].to_s
       else
         finalDeliveryTelephone = "000-000-0000"
       end
