@@ -21,7 +21,7 @@ class YahooToMagentoOrders
           puts "MATCH ROW FOR ORDER #" + row[:order_id].to_s + " PRODUCTS: " + rowProduct[:product_code].to_s
           #build the sku's per order here
           weMatched = true
-          orderSkuData << rowProduct[:product_code].to_s + ":" + rowProduct[:quantity].to_s + ":" + rowProduct[:unit_price].gsub("$", "").to_s + ":" + rowProduct[:product_code].to_s + "|"
+          orderSkuData << rowProduct[:product_code].to_s + ":" + rowProduct[:quantity].to_s + ":" + rowProduct[:unit_price].gsub("$", "").to_s + ":" + rowProduct[:product_id].to_s + "|"
         else
           #puts "NO MATCH"
           break if weMatched == true
@@ -75,7 +75,7 @@ class YahooToMagentoOrders
       weMatchedStatus = false
       ordersStatus.each do |rowStatus|
 
-        if row[:order_id].to_s == rowStatus[:id].to_s
+        if row[:order_id].to_s == rowStatus[:order_id].to_s
           puts "MATCH ROW FOR ORDER #" + row[:order_id].to_s + " STATUS: " + rowStatus[:statusmark].to_s
           #build the sku's per order here
           weMatchedStatus = true
